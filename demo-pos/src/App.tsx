@@ -18,6 +18,7 @@ export default function App({}: Props) {
         <Switch>
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Redirect path="/" to="/login" />
         </Switch>
       </Router>
     </>
