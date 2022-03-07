@@ -14,6 +14,8 @@ import {
   RouteProps,
   Switch,
 } from "react-router-dom";
+import Header from "./components/layouts/Header";
+import Menu from "./components/layouts/Menu";
 
 type Props = {};
 
@@ -21,6 +23,8 @@ export default function App({}: Props) {
   return (
     <>
       <Router>
+        <Header />
+        <Menu />
         <Switch>
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
