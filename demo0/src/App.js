@@ -2,15 +2,18 @@ import React from 'react'
 
 export default  function App() {
   return (
-    <div>App1</div>
+    <div>
+<div>App1</div>    
+<Header/>
+    </div>
+    
   )
 }
-
 
 
 // Create React Component
 function Header() {
   return (
-    <div>Header</div>
+    <h1>Header</h1>
   )
 }
