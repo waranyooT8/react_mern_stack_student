@@ -1,4 +1,4 @@
-export const Header = () => {
+export default () => {
   const version = Math.random();
 
   return (
