@@ -15,7 +15,7 @@ export default function App({}: Props) {
 const Demo = () => {
   return (
     <>
-      <Stack spacing={2} direction="row">
+      <Stack spacing={10} direction="column">
         <Button variant="text">Text</Button>
         <Button variant="contained">Contained</Button>
         <Button variant="outlined">Outlined</Button>
