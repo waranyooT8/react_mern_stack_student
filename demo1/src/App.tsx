@@ -33,7 +33,8 @@ const Body = (props: BodyProps) => {
       </button>
 
       {/* demo input */}
-      
+      <br />
+      <input type="text" name="username" onChange={e=>console.log(e.target.value)}/>
     </>
   );
 };
