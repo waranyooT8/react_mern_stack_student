@@ -7,26 +7,33 @@ export default function App({}: Props) {
     <>
       <div>App</div>
       <Header />
-      <Body title="Click" version="1234"/>
+      <br />
+      <Body title="Click" version="1234" />
     </>
   );
 }
 
-
 type BodyProps = {
-  title:String
-  version:String
-}
-const Body = (props:BodyProps) => {
-  let count = 0
-  const [countX, setCountX] = useState<number>(0)
+  title: String;
+  version: String;
+};
+const Body = (props: BodyProps) => {
+  let count = 0;
+  const [countX, setCountX] = useState<number>(0);
 
   return (
     <>
-      <button onClick={()=>{
-        count++
-        console.log("count: " + count)
-        }}>{props.title}: {count}</button>
+      {/* demo button */}
+      <button
+        onClick={() => {
+          setCountX((pre) => pre + 1);
+        }}
+      >
+        {props.title}: {countX}
+      </button>
+
+      {/* demo input */}
+      
     </>
   );
 };
