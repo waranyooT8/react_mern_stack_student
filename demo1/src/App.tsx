@@ -20,7 +20,7 @@ type BodyProps = {
 const Body = (props: BodyProps) => {
   let count = 0;
   const [countX, setCountX] = useState<number>(0);
-  const [username, setUsername] = useState<String>("")
+  const [username, setUsername] = useState<string>("")
 
   return (
     <>
