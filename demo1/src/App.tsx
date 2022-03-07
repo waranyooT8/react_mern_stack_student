@@ -20,7 +20,7 @@ type BodyProps = {
 const Body = (props:BodyProps) => {
   return (
     <>
-      <button>{props.title}</button>
+      <button onClick={()=>alert("Hey")}>{props.title}</button>
     </>
   );
 };
