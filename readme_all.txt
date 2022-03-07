@@ -34,3 +34,7 @@ index.html -> index.js -> app.js
 # react snippets 
 rcc 
 rfc
+
+# new react project
+npx create-react-app demo0
+npx create-react-app demo1 --template typescript
