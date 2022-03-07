@@ -30,3 +30,7 @@ code --install-extension christian-kohler.path-intellisense
 
 # flow
 index.html -> index.js -> app.js
+
+# react snippets 
+rcc 
+rfc
