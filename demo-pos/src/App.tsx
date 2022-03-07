@@ -18,9 +18,13 @@ export default function App({}: Props) {
         <Switch>
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
-          <Redirect path="/" to="/login" />
+          <Route path="/notfound" component={PageNotFound} />
+          <Redirect exact={true} path="/" to="/login" />
+          <Redirect path="/" to="/notfound" />
         </Switch>
       </Router>
     </>
   );
 }
+
+const PageNotFound = () => <div>Page not found</div>;
