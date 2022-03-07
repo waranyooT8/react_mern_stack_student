@@ -11,11 +11,3 @@ export default function App({}: Props) {
   );
 }
 
-const Header = () => {
-  return (
-    <>
-      <h1>Header</h1>
-      <span>version {Math.random()}</span>
-    </>
-  );
-};
