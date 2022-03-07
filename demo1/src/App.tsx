@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./widgets/Header";
 type Props = {};
 
@@ -19,9 +19,14 @@ type BodyProps = {
 }
 const Body = (props:BodyProps) => {
   let count = 0
+  const [countX, setCountX] = useState<number>(0)
+
   return (
     <>
-      <button onClick={()=>count++}>{props.title}: {count}</button>
+      <button onClick={()=>{
+        count++
+        console.log("count: " + count)
+        }}>{props.title}: {count}</button>
     </>
   );
 };
