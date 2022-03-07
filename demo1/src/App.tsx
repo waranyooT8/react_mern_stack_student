@@ -18,9 +18,10 @@ type BodyProps = {
   version:String
 }
 const Body = (props:BodyProps) => {
+  let count = 0
   return (
     <>
-      <button onClick={()=>alert("Hey")}>{props.title}</button>
+      <button onClick={()=>count++}>{props.title}: {count}</button>
     </>
   );
 };
