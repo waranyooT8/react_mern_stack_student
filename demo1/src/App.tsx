@@ -20,6 +20,7 @@ type BodyProps = {
 const Body = (props: BodyProps) => {
   let count = 0;
   const [countX, setCountX] = useState<number>(0);
+  const [username, setUsername] = useState<String>("")
 
   return (
     <>
@@ -34,7 +35,10 @@ const Body = (props: BodyProps) => {
 
       {/* demo input */}
       <br />
-      <input type="text" name="username" onChange={e=>console.log(e.target.value)}/>
+      <input type="text" name="username" onChange={e=>setUsername(e.target.value)}/>
+      {/* spy */}
+      <br />
+      <span>Debug: {username}</span>
     </>
   );
 };
