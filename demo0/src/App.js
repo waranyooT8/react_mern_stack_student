@@ -5,3 +5,12 @@ export default  function App() {
     <div>App1</div>
   )
 }
+
+
+
+// Create React Component
+function Header() {
+  return (
+    <div>Header</div>
+  )
+}
