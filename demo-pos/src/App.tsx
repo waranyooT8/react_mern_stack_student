@@ -1,25 +1,12 @@
 import React from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import LoginPage from "./components/pages/LoginPage";
 
 type Props = {};
 
 export default function App({}: Props) {
   return (
-    <div>
-      <Demo />
-    </div>
-  );
-}
-
-const Demo = () => {
-  return (
     <>
-      <Stack spacing={10} direction="column">
-        <Button variant="text">Text</Button>
-        <Button variant="contained">Contained</Button>
-        <Button variant="outlined">Outlined</Button>
-      </Stack>
+      <LoginPage />
     </>
   );
-};
+}
