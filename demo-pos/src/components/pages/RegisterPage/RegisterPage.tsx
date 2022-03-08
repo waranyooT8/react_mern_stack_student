@@ -10,6 +10,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { SxProps } from "@mui/system";
 import { useHistory } from "react-router-dom";
+import { User } from "../../../types/user.type";
 
 const classes: any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -78,7 +79,7 @@ export default (props: RegisterProps) => {
     );
   };
 
-  const initialValue = { username: "", password: "" };
+  const initialValue: User = { username: "", password: "" };
   return (
     <Box sx={classes.root}>
       <Card sx={{ maxWidth: 345 }}>
