@@ -20,4 +20,4 @@ const schema = mongoose.Schema({
 });
 
 schema.index({ username: 1 }, { unique: true });
-module.exports = mongoose.Model("users", schema);
+module.exports = mongoose.model("users", schema);
