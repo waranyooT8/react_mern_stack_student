@@ -18,10 +18,17 @@ const RegisterPage: React.FC<any> = () => {
           onChange={(e) =>
             setAccount({ username: e.target.value, password: "" })
           }
-        />{" "}
+        />
         <br />
         <label>Password: </label>
-        <input type="text" name="password" /> <br />
+        <input
+          type="text"
+          name="password"
+          onChange={(e) =>
+            setAccount({ username: "", password: e.target.value })
+          }
+        />{" "}
+        <br />
       </form>
 
       <span>Debug: {JSON.stringify(account)}</span>
