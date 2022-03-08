@@ -15,18 +15,14 @@ const RegisterPage: React.FC<any> = () => {
         <input
           type="text"
           name="username"
-          onChange={(e) =>
-            setAccount({ username: e.target.value, password: "" })
-          }
+          onChange={(e) => setAccount({ ...account, username: e.target.value })}
         />
         <br />
         <label>Password: </label>
         <input
           type="text"
           name="password"
-          onChange={(e) =>
-            setAccount({ username: "", password: e.target.value })
-          }
+          onChange={(e) => setAccount({ ...account, password: e.target.value })}
         />{" "}
         <br />
       </form>
