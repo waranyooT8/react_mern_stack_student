@@ -6,39 +6,20 @@ type RegisterPageProps = {
 };
 
 const RegisterPage: React.FC<any> = () => {
-  const [account, setAccount] = React.useState({ username: "", password: "" });
-
   return (
     <>
       <h1>RegisterPage</h1>
       <Formik
         initialValues={{ username: "", password: "" }}
-        onSubmit={(values, { setSubmitting }) => {
-          
-        }}
+        onSubmit={(values, { setSubmitting }) => {}}
       >
         <form>
           <label>Username: </label>
-          <input
-            type="text"
-            name="username"
-            onChange={(e) =>
-              setAccount({ ...account, username: e.target.value })
-            }
-          />
+          <input type="text" name="username" />
           <br />
           <label>Password: </label>
-          <input
-            type="text"
-            name="password"
-            onChange={(e) =>
-              setAccount({ ...account, password: e.target.value })
-            }
-          />{" "}
-          <br />
-          <button type="button" onClick={() => alert(JSON.stringify(account))}>
-            Submit
-          </button>
+          <input type="text" name="password" /> <br />
+          <button type="submit">Submit</button>
         </form>
       </Formik>
     </>
