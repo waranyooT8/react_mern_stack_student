@@ -16,10 +16,23 @@ const RegisterPage: React.FC<any> = () => {
     return (
       <form>
         <label>Username: </label>
-        <input type="text" name="username" />
+        {/* username */}
+        <input
+          type="text"
+          name="username"
+          value={values.username}
+          onChange={handleChange}
+        />
         <br />
         <label>Password: </label>
-        <input type="text" name="password" /> <br />
+        {/* password */}
+        <input
+          type="text"
+          name="password"
+          value={values.password}
+          onChange={handleChange}
+        />{" "}
+        <br />
         <button type="submit">Submit</button>
       </form>
     );
