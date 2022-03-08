@@ -10,4 +10,9 @@ app.get("/test1/:username/:password", (req, res) => {
   res.json({ result: "test1", echo: req.params });
 });
 
+// http://localhost:3000/test1?username=lek&password=555
+app.get("/test1", (req, res) => {
+  res.json({ result: "test1", echo: req.query });
+});
+
 app.listen(3000, () => console.log("Server is running"));
