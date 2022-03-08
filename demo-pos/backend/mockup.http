@@ -1,5 +1,5 @@
 ### product
-GET http://localhost:3000/product HTTP/1.1
+GET http://localhost:3000/api/v1/product HTTP/1.1
 
 ### transaction
 GET http://localhost:3000/transaction HTTP/1.1
