@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { SxProps } from "@mui/system";
 import { useHistory } from "react-router-dom";
 import { User } from "../../../types/user.type";
+import axios from "axios";
 
 const classes: any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -89,8 +90,13 @@ export default (props: RegisterProps) => {
           </Typography>
           <Formik
             initialValues={initialValue}
-            onSubmit={(values, { setSubmitting }) => {
-              alert(JSON.stringify(values));
+            onSubmit={async (values, { setSubmitting }) => {
+              const result = await axios.post(
+                "http://localhost:8081/api/v2/register",
+                values
+              );
+
+              alert(JSON.stringify(result.data));
               setSubmitting(false);
             }}
           >
