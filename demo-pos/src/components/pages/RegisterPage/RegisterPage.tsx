@@ -14,7 +14,7 @@ const RegisterPage: React.FC<any> = () => {
     isSubmitting,
   }: any) => {
     return (
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Username: </label>
         {/* username */}
         <input
@@ -43,7 +43,9 @@ const RegisterPage: React.FC<any> = () => {
       <h1>RegisterPage</h1>
       <Formik
         initialValues={{ username: "", password: "" }}
-        onSubmit={(values, { setSubmitting }) => {}}
+        onSubmit={(values, { setSubmitting }) => {
+          alert(JSON.stringify(values));
+        }}
       >
         {showForm}
       </Formik>
