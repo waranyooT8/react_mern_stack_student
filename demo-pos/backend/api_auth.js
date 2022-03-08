@@ -7,7 +7,11 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const doc = await Users.create(req.body);
-  res.json({ result: "register", doc });
+  try {
+    const doc = await Users.create(req.body);
+    res.json({ result: "ok", doc });
+  } catch (error) {
+    res.json({ result: "nok", error });
+  }
 });
 module.exports = router;
