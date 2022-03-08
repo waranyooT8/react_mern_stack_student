@@ -7,7 +7,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import InputBase from "@mui/material/InputBase";
 import * as React from "react";
 import MailIcon from "@mui/icons-material/Mail";
-import { useDispatch } from "react-redux";
+
 import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -71,7 +71,6 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ handleDrawerOpen, open }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const logout = () => {};
 
