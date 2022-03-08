@@ -33,7 +33,9 @@ const RegisterPage: React.FC<any> = () => {
           onChange={handleChange}
         />{" "}
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          Submit
+        </button>
       </form>
     );
   };
