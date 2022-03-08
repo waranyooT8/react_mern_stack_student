@@ -1,11 +1,26 @@
-import * as React from "react";
+/* eslint-disable import/no-anonymous-default-export */
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { Box } from "@mui/system";
 import { Formik } from "formik";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { SxProps } from "@mui/system";
+import { useHistory } from "react-router-dom";
 
-type RegisterPageProps = {
-  //
+const classes: any = {
+  root: { display: "flex", justifyContent: "center", alignItems: "center" },
+  submitBtn: { marginTop: 4 },
+  canelBtn: { marginTop: 2 },
 };
 
-const RegisterPage: React.FC<any> = () => {
+type RegisterProps = {};
+export default (props: RegisterProps) => {
+  const history = useHistory();
+
   const showForm = ({
     values,
     handleChange,
@@ -14,49 +29,74 @@ const RegisterPage: React.FC<any> = () => {
     isSubmitting,
   }: any) => {
     return (
-      <form onSubmit={handleSubmit}>
-        <label>Username: </label>
-        {/* username */}
-        <input
-          type="text"
-          name="username"
+      <form noValidate onSubmit={handleSubmit}>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="username"
+          label="Username"
+          onChange={handleChange}
           value={values.username}
-          onChange={handleChange}
+          autoComplete="email"
+          autoFocus
         />
-        <br />
-        <label>Password: </label>
-        {/* password */}
-        <input
-          type="text"
-          name="password"
-          value={values.password}
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
           onChange={handleChange}
-        />{" "}
-        <br />
-        <button type="submit" disabled={isSubmitting}>
-          Submit
-        </button>
+          value={values.password}
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+        />
+        <Button
+          sx={classes.submitBtn}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          disabled={isSubmitting}
+        >
+          Create
+        </Button>
+        <Button
+          sx={classes.canelBtn}
+          onClick={() => history.goBack()}
+          type="button"
+          fullWidth
+          variant="outlined"
+        >
+          Cancel
+        </Button>
       </form>
     );
   };
 
+  const initialValue = { username: "", password: "" };
   return (
-    <>
-      <h1>RegisterPage</h1>
-      <Formik
-        initialValues={{ username: "lek", password: "555" }}
-        onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values));
-
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 5000);
-        }}
-      >
-        {showForm}
-      </Formik>
-    </>
+    <Box sx={classes.root}>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            Register
+          </Typography>
+          <Formik
+            initialValues={initialValue}
+            onSubmit={(values, { setSubmitting }) => {
+              alert(JSON.stringify(values));
+              setSubmitting(false);
+            }}
+          >
+            {showForm}
+          </Formik>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
-
-export default RegisterPage;
