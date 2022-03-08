@@ -47,6 +47,10 @@ const RegisterPage: React.FC<any> = () => {
         initialValues={{ username: "lek", password: "555" }}
         onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values));
+
+          setTimeout(() => {
+            setSubmitting(false);
+          }, 5000);
         }}
       >
         {showForm}
