@@ -6,7 +6,8 @@ router.post("/login", (req, res) => {
   res.json({ result: "login", echo: req.body });
 });
 
-router.post("/register", (req, res) => {
-  res.json({ result: "register", echo: req.body });
+router.post("/register", async (req, res) => {
+  const doc = await Users.create(req.body);
+  res.json({ result: "register", doc });
 });
 module.exports = router;
