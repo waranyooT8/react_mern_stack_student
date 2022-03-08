@@ -6,8 +6,13 @@ type RegisterPageProps = {
 };
 
 const RegisterPage: React.FC<any> = () => {
-  
-  const showForm = () => {
+  const showForm = ({
+    values,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    isSubmitting,
+  }: any) => {
     return (
       <form>
         <label>Username: </label>
@@ -26,8 +31,9 @@ const RegisterPage: React.FC<any> = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         onSubmit={(values, { setSubmitting }) => {}}
-        
-      ></Formik>
+      >
+        {showForm}
+      </Formik>
     </>
   );
 };
