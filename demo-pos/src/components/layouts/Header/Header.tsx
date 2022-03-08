@@ -71,18 +71,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 type HeaderProp = {
   onDrawerOpen: () => void;
+  open: boolean;
 };
-export default function PersistentDrawerLeft(props: HeaderProp) {
+export default function Header(props: HeaderProp) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const { open } = props;
 
   const handleDrawerOpen = () => {
-    // setOpen(true);
     props.onDrawerOpen();
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   return (
