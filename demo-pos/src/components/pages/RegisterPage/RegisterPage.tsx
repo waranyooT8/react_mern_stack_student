@@ -42,7 +42,7 @@ const RegisterPage: React.FC<any> = () => {
     <>
       <h1>RegisterPage</h1>
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ username: "lek", password: "555" }}
         onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values));
         }}
