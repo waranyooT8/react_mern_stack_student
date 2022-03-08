@@ -20,4 +20,12 @@ app.post("/login", (req, res) => {
   res.json({ result: "login", echo: req.body });
 });
 
+app.get("/product", (req, res) => {
+  res.json({ result: "product" });
+});
+
+app.get("/transaction", (req, res) => {
+  res.json({ result: "transaction" });
+});
+
 app.listen(3000, () => console.log("Server is running"));
