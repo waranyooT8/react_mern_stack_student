@@ -23,10 +23,13 @@ export const setLoginFailedToState = (payload: string) => ({
 });
 
 export const login = (user: User) => {
-  try {
-    setLoginFetchingToState();
-    const result = await httpClient.post<LoginResult>(server.LOGIN_URL, user);
-  } catch (error) {
-    setLoginFailedToState(JSON.stringify(error));
-  }
+  return async (dispatch: any) => {
+    try {
+      setLoginFetchingToState();
+      const result = await httpClient.post<LoginResult>(server.LOGIN_URL, user);
+      setLoginSuccessToState(result.data);
+    } catch (error) {
+      setLoginFailedToState(JSON.stringify(error));
+    }
+  };
 };
