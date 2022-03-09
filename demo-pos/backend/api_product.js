@@ -23,16 +23,15 @@ uploadImage = async (files, doc) => {
   }
 };
 
-router.get(
-  "/product",
-  (req, res, next) => {
-    res.end("No authorized");
-  },
-  async (req, res) => {
-    const doc = await Products.find();
-    res.json(doc);
-  }
-);
+const verify1 = (req, res, next) => {
+  res.end("No authorized1");
+  // next();
+};
+
+router.get("/product", verify1, async (req, res) => {
+  const doc = await Products.find();
+  res.json(doc);
+});
 
 // Add Product
 router.post("/product", (req, res) => {
