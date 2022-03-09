@@ -14,6 +14,7 @@ import { User } from "../../../types/user.type";
 import axios from "axios";
 import { RootReducer } from "../../../reducers";
 import * as registerActions from "../../../actions/register.action";
+import { Alert } from "@mui/material";
 
 const classes: any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -82,6 +83,13 @@ export default (props: RegisterProps) => {
         >
           Cancel
         </Button>
+
+        {/* Error Alert */}
+        {registerReducer.isError && (
+          <Alert sx={{ marginTop: 2 }} severity="error">
+            There is something wrong!
+          </Alert>
+        )}
       </form>
     );
   };
@@ -97,12 +105,7 @@ export default (props: RegisterProps) => {
           <Formik
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
-              const result = await axios.post(
-                "http://localhost:8081/api/v2/register",
-                values
-              );
-
-              alert(JSON.stringify(result.data));
+              dispatch(registerActions.register(values));
               setSubmitting(false);
             }}
           >
