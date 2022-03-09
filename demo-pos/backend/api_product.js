@@ -31,7 +31,15 @@ const verify1 = (req, res, next) => {
   }
 };
 
-router.get("/product", verify1, async (req, res) => {
+const verify2 = (req, res, next) => {
+  if (req.query.level == "admin") {
+    next();
+  } else {
+    res.end("Level is not enough");
+  }
+};
+
+router.get("/product", verify1, verify2, async (req, res) => {
   const doc = await Products.find();
   res.json(doc);
 });
