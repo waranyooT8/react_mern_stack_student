@@ -114,7 +114,7 @@ export default (props: LoginProps) => {
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
               const result = await httpClient.post(server.LOGIN_URL, values);
-              alert(JSON.stringify(result.data));
+              alert(JSON.stringify(result.data.token));
               setSubmitting(false);
             }}
           >
