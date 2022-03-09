@@ -23,6 +23,7 @@ type LoginProps = {};
 
 export default (props: LoginProps) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -87,7 +88,7 @@ export default (props: LoginProps) => {
         </Grid>
 
         {/* Error Alert */}
-        {false && (
+        {true && (
           <Alert sx={{ marginTop: 2 }} severity="error">
             There is something wrong!
           </Alert>
@@ -115,7 +116,7 @@ export default (props: LoginProps) => {
           <Formik
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
-              loginActions.login(values);
+              dispatch(loginActions.login(values));
               setSubmitting(false);
             }}
           >
