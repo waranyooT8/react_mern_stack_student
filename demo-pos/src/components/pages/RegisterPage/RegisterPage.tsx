@@ -7,11 +7,13 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { Formik } from "formik";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SxProps } from "@mui/system";
 import { useHistory } from "react-router-dom";
 import { User } from "../../../types/user.type";
 import axios from "axios";
+import { RootReducer } from "../../../reducers";
+import * as registerActions from "../../../actions/register.action";
 
 const classes: any = {
   root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -22,6 +24,10 @@ const classes: any = {
 type RegisterProps = {};
 export default (props: RegisterProps) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const registerReducer = useSelector(
+    (state: RootReducer) => state.registerReducer
+  );
 
   const showForm = ({
     values,
