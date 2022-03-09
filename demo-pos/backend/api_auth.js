@@ -5,7 +5,13 @@ var bcrypt = require("bcryptjs");
 const jwt = require("./jwt");
 
 router.post("/login", (req, res) => {
-  res.json({ result: "login", echo: req.body });
+  Users.findOne({ username: req.body.username })
+    .then((doc) => {
+      res.json({ result: "login", echo: doc });
+    })
+    .catch((e) => {
+      res.json({ result: "login", echo: e });
+    });
 });
 
 router.post("/register", async (req, res) => {
