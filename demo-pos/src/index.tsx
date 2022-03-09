@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import reducers from "./reducers";
 import logger from "redux-logger";
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers, applyMiddleware(thunk, logger));
 
 // HOC (Higher Order Component)
 ReactDOM.render(
