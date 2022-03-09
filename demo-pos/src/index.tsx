@@ -10,7 +10,12 @@ import { Provider } from "react-redux";
 import reducers from "./reducers";
 import logger from "redux-logger";
 
-const store = createStore(reducers, applyMiddleware(thunk, logger));
+let middlewares: Middleware[] = [thunk];
+
+if (process.env.REACT_APP_IS_PRODUCTION != "1") {
+  middlewares.push(logger);
+}
+export const store = createStore(reducers, applyMiddleware(...middlewares));
 
 // HOC (Higher Order Component)
 ReactDOM.render(
