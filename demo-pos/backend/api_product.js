@@ -23,10 +23,16 @@ uploadImage = async (files, doc) => {
   }
 };
 
-router.get("/product", (req, res, next)=>{next()}, async (req, res) => {
-  const doc = await Products.find();
-  res.json(doc);
-});
+router.get(
+  "/product",
+  (req, res, next) => {
+    res.end("No authorized");
+  },
+  async (req, res) => {
+    const doc = await Products.find();
+    res.json(doc);
+  }
+);
 
 // Add Product
 router.post("/product", (req, res) => {
@@ -64,7 +70,6 @@ router.put("/product", (req, res) => {
     res.json({ result: "nok", message: JSON.stringify(err) });
   }
 });
-
 
 // Get single
 router.get("/product/id/:id", async (req, res) => {
