@@ -4,6 +4,7 @@ const Users = require("./models/user_schema");
 var bcrypt = require("bcryptjs");
 const jwt = require("./jwt");
 
+// login
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -18,6 +19,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// register
 router.post("/register", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 8);
