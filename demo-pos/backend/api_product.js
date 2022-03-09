@@ -4,6 +4,7 @@ const Products = require("./models/product_schema");
 const formidable = require("formidable");
 const path = require("path");
 const fs = require("fs-extra");
+const jwt = require("./jwt");
 const { verify1, verify2 } = require("./interceptor");
 
 // Upload Image
@@ -24,7 +25,7 @@ uploadImage = async (files, doc) => {
   }
 };
 
-router.get("/product", verify1, verify2, async (req, res) => {
+router.get("/product", jwt.verify, async (req, res) => {
   const doc = await Products.find();
   res.json(doc);
 });
