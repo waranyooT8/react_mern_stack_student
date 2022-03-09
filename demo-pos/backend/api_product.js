@@ -23,7 +23,7 @@ uploadImage = async (files, doc) => {
   }
 };
 
-router.get("/product", async (req, res) => {
+router.get("/product", (req, res, next)=>{next()}, async (req, res) => {
   const doc = await Products.find();
   res.json(doc);
 });
