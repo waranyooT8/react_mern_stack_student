@@ -17,6 +17,7 @@ import { server } from "../../../constants";
 import { LoginResult } from "../../../types/auth-result.type";
 import { User } from "../../../types/user.type";
 import { httpClient } from "../../../utils/HttpClient";
+import * as loginActions from "../../../actions/login.action";
 
 type LoginProps = {};
 
@@ -114,11 +115,7 @@ export default (props: LoginProps) => {
           <Formik
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
-              const result = await httpClient.post<LoginResult>(
-                server.LOGIN_URL,
-                values
-              );
-              alert(JSON.stringify(result.data.result));
+              loginActions.login(values);
               setSubmitting(false);
             }}
           >
