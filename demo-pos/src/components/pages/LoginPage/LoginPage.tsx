@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Formik } from "formik";
+import { Formik, FormikProps } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useHistory } from "react-router-dom";
@@ -36,7 +36,7 @@ export default (props: LoginProps) => {
     handleSubmit,
     setFieldValue,
     isSubmitting,
-  }: any) => {
+  }: FormikProps<User>) => {
     return (
       <form noValidate onSubmit={handleSubmit}>
         <TextField
