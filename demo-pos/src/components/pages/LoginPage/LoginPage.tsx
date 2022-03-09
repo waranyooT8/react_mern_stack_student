@@ -13,7 +13,9 @@ import { Formik, FormikProps } from "formik";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useHistory } from "react-router-dom";
+import { server } from "../../../constants";
 import { User } from "../../../types/user.type";
+import { httpClient } from "../../../utils/HttpClient";
 
 type LoginProps = {};
 
@@ -110,7 +112,9 @@ export default (props: LoginProps) => {
           </Typography>
           <Formik
             initialValues={initialValue}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={async (values, { setSubmitting }) => {
+              const result = await httpClient.post(server.LOGIN_URL, values);
+              alert(JSON.stringify(result.data));
               setSubmitting(false);
             }}
           >
