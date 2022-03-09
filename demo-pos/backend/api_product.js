@@ -24,8 +24,11 @@ uploadImage = async (files, doc) => {
 };
 
 const verify1 = (req, res, next) => {
-  res.end("No authorized1");
-  // next();
+  if (req.query.token == "1234") {
+    next();
+  } else {
+    res.end("No authorized1");
+  }
 };
 
 router.get("/product", verify1, async (req, res) => {
