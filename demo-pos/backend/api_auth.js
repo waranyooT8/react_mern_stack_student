@@ -10,7 +10,7 @@ router.post("/login", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    req.body.password = bcrypt.hash(req.body.password, 8);
+    req.body.password = await bcrypt.hash(req.body.password, 8);
     const doc = await Users.create(req.body);
 
     res.json({ result: "ok", doc });
