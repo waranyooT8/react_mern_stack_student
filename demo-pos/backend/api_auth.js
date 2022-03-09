@@ -10,7 +10,13 @@ router.post("/login", async (req, res) => {
     const { username, password } = req.body;
     const doc = await Users.findOne({ username });
     if (doc && bcrypt.compareSync(password, doc.password)) {
-      const token = jwt.sign({ username }, 1000000);
+      const payload = {
+        id: doc._id,
+        level: doc.level,
+        username: doc.username,
+      };
+
+      const token = jwt.sign(payload, 1000000);
 
       res.json({ result: "ok", token });
     } else {
