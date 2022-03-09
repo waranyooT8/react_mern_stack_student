@@ -47,9 +47,12 @@ router.put("/product", (req, res) => {
   try {
     const form = new formidable.IncomingForm();
     form.parse(req, async (err, fields, files) => {
-      const doc = await Products.findOneAndUpdate({product_id: fields.product_id}, fields);
-      await uploadImage(files, doc);
-      res.json({ result: "ok", err, fields, files });
+      const doc = await Products.findOneAndUpdate(
+        { product_id: fields.product_id },
+        fields
+      );
+      await uploadImage(files, fields);
+      res.json({ result: "ok11", err, fields, files, doc });
     });
   } catch (err) {
     res.json({ result: "nok", message: JSON.stringify(err) });
