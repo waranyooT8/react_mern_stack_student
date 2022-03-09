@@ -42,6 +42,12 @@ router.post("/product", (req, res) => {
   }
 });
 
+// Delete Product
+router.delete("/product/id/:id", async (req, res) => {
+  let doc = await Products.findOneAndDelete({ product_id: req.params.id });
+  res.json({ result: "ok", message: JSON.stringify(doc) });
+});
+
 // Update Product
 router.put("/product", (req, res) => {
   try {
