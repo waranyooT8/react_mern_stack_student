@@ -18,13 +18,14 @@ import { LoginResult } from "../../../types/auth-result.type";
 import { User } from "../../../types/user.type";
 import { httpClient } from "../../../utils/HttpClient";
 import * as loginActions from "../../../actions/login.action";
+import { RootReducer } from "../../../reducers";
 
 type LoginProps = {};
 
 export default (props: LoginProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const loginReducer = useSelector((state: any) => state.loginReducer);
+  const loginReducer = useSelector((state: RootReducer) => state.loginReducer);
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
