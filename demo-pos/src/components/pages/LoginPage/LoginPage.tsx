@@ -14,6 +14,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import { server } from "../../../constants";
+import { LoginResult } from "../../../types/auth-result.type";
 import { User } from "../../../types/user.type";
 import { httpClient } from "../../../utils/HttpClient";
 
@@ -113,8 +114,11 @@ export default (props: LoginProps) => {
           <Formik
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
-              const result = await httpClient.post(server.LOGIN_URL, values);
-              alert(JSON.stringify(result.data.token));
+              const result = await httpClient.post<LoginResult>(
+                server.LOGIN_URL,
+                values
+              );
+              alert(JSON.stringify(result.data.result));
               setSubmitting(false);
             }}
           >
