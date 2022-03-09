@@ -10,7 +10,9 @@ router.post("/login", async (req, res) => {
     const { username, password } = req.body;
     const doc = await Users.findOne({ username });
     if (doc && bcrypt.compareSync(password, doc.password)) {
-      res.json({ result: "ok", token: "xxx" });
+      const token = jwt.sign({ username });
+
+      res.json({ result: "ok", token });
     } else {
       res.json({ result: "nok", token: "", error: "invalid account" });
     }
