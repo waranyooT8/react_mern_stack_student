@@ -4,14 +4,18 @@ const Users = require("./models/user_schema");
 var bcrypt = require("bcryptjs");
 const jwt = require("./jwt");
 
-router.post("/login", (req, res) => {
-  Users.findOne({ username: req.body.username })
-    .then((doc) => {
-      res.json({ result: "login", echo: doc });
-    })
-    .catch((e) => {
-      res.json({ result: "login", echo: e });
-    });
+router.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const doc = await Users.findOne({ username });
+    if (doc && bcrypt.compareSync(password, doc.password)) {
+      res.json({ result: "ok", token: "xxx" });
+    } else {
+      res.json({ result: "nok", token: "", error: "invalid account" });
+    }
+  } catch (e) {
+    res.json({ result: "nok", token: "", error: e });
+  }
 });
 
 router.post("/register", async (req, res) => {
