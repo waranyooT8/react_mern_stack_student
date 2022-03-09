@@ -65,4 +65,19 @@ router.put("/product", (req, res) => {
   }
 });
 
+
+// Get single
+router.get("/product/id/:id", async (req, res) => {
+  let doc = await Products.findOne({ product_id: req.params.id });
+  res.json(doc);
+});
+
+// Get product by keyword
+router.get("/product/name/:keyword", async (req, res) => {
+  console.log("get products by keyword");
+  var query = { name: new RegExp("^.*" + req.params.keyword + ".*$", "i") };
+  let doc = await Products.find(query);
+  res.json(doc);
+});
+
 module.exports = router;
