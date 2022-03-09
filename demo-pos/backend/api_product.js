@@ -25,7 +25,7 @@ uploadImage = async (files, doc) => {
   }
 };
 
-router.get("/product", jwt.verify, async (req, res) => {
+router.get("/product", async (req, res) => {
   const doc = await Products.find();
   res.json(doc);
 });
