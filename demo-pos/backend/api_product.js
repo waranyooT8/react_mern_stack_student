@@ -4,6 +4,7 @@ const Products = require("./models/product_schema");
 const formidable = require("formidable");
 const path = require("path");
 const fs = require("fs-extra");
+const { verify1, verify2 } = require("./interceptor");
 
 // Upload Image
 uploadImage = async (files, doc) => {
@@ -20,22 +21,6 @@ uploadImage = async (files, doc) => {
 
     // Update database
     await Products.findOneAndUpdate({ product_id: doc.product_id }, doc);
-  }
-};
-
-const verify1 = (req, res, next) => {
-  if (req.query.token == "1234") {
-    next();
-  } else {
-    res.end("No authorized1");
-  }
-};
-
-const verify2 = (req, res, next) => {
-  if (req.query.level == "admin") {
-    next();
-  } else {
-    res.end("Level is not enough");
   }
 };
 
