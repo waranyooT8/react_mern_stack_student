@@ -27,7 +27,11 @@ export const login = (user: User) => {
     try {
       setLoginFetchingToState();
       const result = await httpClient.post<LoginResult>(server.LOGIN_URL, user);
-      setLoginSuccessToState(result.data);
+      if (result.data.result === "ok") {
+        setLoginSuccessToState(result.data);
+      } else {
+        setLoginFailedToState("Invalid account");
+      }
     } catch (error) {
       setLoginFailedToState(JSON.stringify(error));
     }
