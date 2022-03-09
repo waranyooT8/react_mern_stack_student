@@ -52,6 +52,7 @@ module.exports = {
       // if everything good, save to request for use in other routes
       req.userId = decoded.id;
       req.userLevel = decoded.level;
+      req.username = decoded.username;
       next();
     });
   },
