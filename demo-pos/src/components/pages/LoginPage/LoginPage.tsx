@@ -24,6 +24,7 @@ type LoginProps = {};
 export default (props: LoginProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const loginReducer = useSelector((state: any) => state.loginReducer);
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -88,7 +89,7 @@ export default (props: LoginProps) => {
         </Grid>
 
         {/* Error Alert */}
-        {true && (
+        {loginReducer.isError && (
           <Alert sx={{ marginTop: 2 }} severity="error">
             There is something wrong!
           </Alert>
