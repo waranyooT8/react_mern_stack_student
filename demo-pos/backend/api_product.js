@@ -29,10 +29,12 @@ router.get("/product", async (req, res) => {
 });
 
 // Add Product
-router.post("/product", async (req, res) => {
+router.post("/product", (req, res) => {
   try {
     const form = new formidable.IncomingForm();
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, async (err, fields, files) => {
+      const doc = await Products.create(fields);
+      await uploadImage(files, doc);
       res.json({ result: "ok", err, fields, files });
     });
   } catch (err) {
