@@ -69,7 +69,10 @@ const StockCreatePage: React.FC<any> = () => {
               <input
                 onChange={(e: any) => {
                   setFieldValue("file", e.target.files[0]); // for upload
-                  setFieldValue("file_obj",URL.createObjectURL(e.target.files[0])); // for preview image
+                  setFieldValue(
+                    "file_obj",
+                    URL.createObjectURL(e.target.files[0])
+                  ); // for preview image
                 }}
                 type="file"
                 name="image"
@@ -114,7 +117,12 @@ const StockCreatePage: React.FC<any> = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
-          alert(JSON.stringify(values));
+          let formData = new FormData();
+          formData.append("name", values.name);
+          formData.append("price", values.price);
+          formData.append("stock", values.stock);
+          formData.append("image", values.file);
+          dispatch(stockActions.addProduct(formData, props.history));
           setSubmitting(false);
         }}
       >
