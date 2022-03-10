@@ -8,6 +8,7 @@ import { TextField } from "formik-material-ui";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { Product } from "../../../types/product.type";
 import * as stockActions from "./../../../actions/stock.action";
 
 type StockCreatePageProps = {
@@ -74,11 +75,13 @@ const StockCreatePage: React.FC<any> = () => {
     );
   };
 
+  const initialValues: Product = { name: "", stock: 10, price: 90 };
+
   return (
     <Box>
       <Formik
-        initialValues={{ name: "", stock: 10, price: 90 }}
-        onSubmit={(values: any, { setSubmitting }) => {
+        initialValues={initialValues}
+        onSubmit={(values, { setSubmitting }) => {
           alert(JSON.stringify(values));
           setSubmitting(false);
         }}
