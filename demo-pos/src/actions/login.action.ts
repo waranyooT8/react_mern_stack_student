@@ -22,13 +22,14 @@ export const setLoginFailedToState = (payload: string) => ({
   payload,
 });
 
-export const login = (user: User) => {
+export const login = (user: User, history: any) => {
   return async (dispatch: any) => {
     try {
       dispatch(setLoginFetchingToState());
       const result = await httpClient.post<LoginResult>(server.LOGIN_URL, user);
       if (result.data.result === "ok") {
         dispatch(setLoginSuccessToState(result.data));
+        history.push("/stock");
       } else {
         dispatch(setLoginFailedToState("Invalid account"));
       }

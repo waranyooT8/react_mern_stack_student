@@ -118,7 +118,7 @@ export default (props: LoginProps) => {
           <Formik
             initialValues={initialValue}
             onSubmit={async (values, { setSubmitting }) => {
-              dispatch(loginActions.login(values));
+              dispatch(loginActions.login(values, history));
               setSubmitting(false);
             }}
           >
