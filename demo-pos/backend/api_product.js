@@ -26,7 +26,7 @@ uploadImage = async (files, doc) => {
 };
 
 router.get("/product", async (req, res) => {
-  const doc = await Products.find();
+  const doc = await Products.find().sort({ created: -1 });
   res.json(doc);
 });
 
