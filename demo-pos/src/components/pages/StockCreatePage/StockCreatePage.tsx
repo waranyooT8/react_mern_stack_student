@@ -54,6 +54,28 @@ const StockCreatePage: React.FC<any> = () => {
               label="Price"
             />
             <br />
+
+            <div style={{ margin: 16 }}>{showPreviewImage(values)}</div>
+
+            <div>
+              <img
+                src={`${process.env.PUBLIC_URL}/images/ic_photo.png`}
+                style={{ width: 25, height: 20 }}
+              />
+              <span style={{ color: "#00B0CD", marginLeft: 10 }}>
+                Add Picture
+              </span>
+
+              <input
+                type="file"
+                name="image"
+                click-type="type1"
+                multiple
+                accept="image/*"
+                id="files"
+                style={{ padding: "20px 0 0 20px" }}
+              />
+            </div>
           </CardContent>
 
           <CardActions>
@@ -73,6 +95,12 @@ const StockCreatePage: React.FC<any> = () => {
         </Card>
       </Form>
     );
+  };
+
+  const showPreviewImage = (values: any) => {
+    if (values.file_obj) {
+      return <img src={values.file_obj} style={{ height: 100 }} />;
+    }
   };
 
   const initialValues: Product = { name: "", stock: 10, price: 90 };
