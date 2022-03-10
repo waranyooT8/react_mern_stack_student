@@ -37,6 +37,7 @@ import * as stockActions from "./../../../actions/stock.action";
 import { imageUrl } from "./../../../constants";
 // import StockCard from "./../../fragments/StockCard/StockCard";
 import { useDebounce, useDebounceCallback } from "@react-hook/debounce";
+import StockCard from "../../fragments/StockCard";
 
 export default (props: any) => {
   const stockReducer = useSelector((state: RootReducer) => state.stockReducer);
@@ -137,7 +138,7 @@ export default (props: any) => {
   };
 
   return (
-    <Box>      
+    <Box>
       {/* Summary Icons */}
       <Grid container style={{ marginBottom: 16 }} spacing={7}>
         <Grid item lg={3} md={6}>
