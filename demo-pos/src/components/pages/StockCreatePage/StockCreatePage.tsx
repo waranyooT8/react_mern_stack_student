@@ -22,6 +22,16 @@ const StockCreatePage: React.FC<any> = () => {
           <Typography gutterBottom variant="h3">
             Create Stock
           </Typography>
+
+          <Field
+            style={{ marginTop: 16 }}
+            fullWidth
+            component={TextField}
+            name="name"
+            type="text"
+            label="Name"
+          />
+          <br />
         </CardContent>
       </Card>
     </Form>;
