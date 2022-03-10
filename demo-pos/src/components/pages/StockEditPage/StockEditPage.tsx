@@ -7,19 +7,27 @@ import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { RootReducer } from "../../../reducers";
-// import * as stockEditActions from "./../../../actions/stock.edit.action";
+import { StockEditState } from "../../../reducers/stock.edit.reducer";
+import * as stockEditActions from "./../../../actions/stock.edit.action";
 import { imageUrl } from "./../../../constants";
 
-export default (props: any) => {
+export default () => {
+  const match = useRouteMatch<any>();
   const dispatch = useDispatch();
   const [isReady, setIsReady] = React.useState(false);
-  // const stockEditReducer = useSelector((state: RootReducer) => state.stockEditReducer);
+  // const stockEditReducer = useSelector(
+  //   (state: RootReducer) => state.stockEditReducer
+  // );
+
+  const stockEditReducer: StockEditState = useSelector(
+    ({ stockEditReducer }: any) => stockEditReducer
+  );
 
   useEffect(() => {
-    let id = props.match.params.id;
-    // dispatch(stockEditActions.getProductById(id));
+    let id = match.params.id;
+    dispatch(stockEditActions.getProductById(id));
     setTimeout(() => setIsReady(true), 100);
   }, []);
 
