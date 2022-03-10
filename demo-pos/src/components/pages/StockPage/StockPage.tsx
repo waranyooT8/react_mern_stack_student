@@ -137,8 +137,45 @@ export default (props: any) => {
   };
 
   return (
-    <Box>
+    <Box>      
       {/* Summary Icons */}
+      <Grid container style={{ marginBottom: 16 }} spacing={7}>
+        <Grid item lg={3} md={6}>
+          <StockCard
+            icon={AddShoppingCartIcon}
+            title="TOTAL"
+            subtitle="112 THB"
+            color="#00a65a"
+          />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard
+            icon={NewReleasesIcon}
+            title="EMPTY"
+            subtitle="9 PCS."
+            color="#f39c12"
+          />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard
+            icon={AssignmentReturnIcon}
+            title="RETURN"
+            subtitle="1 PCS."
+            color="#dd4b39"
+          />
+        </Grid>
+
+        <Grid item lg={3} md={6}>
+          <StockCard
+            icon={StarIcon}
+            title="LOSS"
+            subtitle="5 PCS."
+            color="#00c0ef"
+          />
+        </Grid>
+      </Grid>
 
       <Paper
         component="form"
