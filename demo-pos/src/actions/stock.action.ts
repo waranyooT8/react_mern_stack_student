@@ -4,6 +4,7 @@ import {
   STOCK_FETCHING,
   STOCK_SUCCESS,
 } from "../constants";
+import { HistoryProp } from "../types/history.type";
 import { Product } from "../types/product.type";
 import { httpClient } from "../utils/HttpClient";
 
@@ -30,5 +31,12 @@ export const loadStock = () => {
     } catch (e) {
       dispatch(setStockFailedToState("Failed"));
     }
+  };
+};
+
+export const addProduct = (formData: any, history: HistoryProp) => {
+  return async (dispatch: any) => {
+    await httpClient.post(server.PRODUCT_URL, formData);
+    history.goBack();
   };
 };

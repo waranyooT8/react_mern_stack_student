@@ -7,7 +7,7 @@ import { Field, Form, Formik, FormikProps } from "formik";
 import { TextField } from "formik-material-ui";
 import React, { ReactEventHandler } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Product } from "../../../types/product.type";
 import * as stockActions from "./../../../actions/stock.action";
 
@@ -16,6 +16,9 @@ type StockCreatePageProps = {
 };
 
 const StockCreatePage: React.FC<any> = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const showForm = ({ values, setFieldValue }: FormikProps<Product>) => {
     return (
       <Form>
@@ -119,10 +122,10 @@ const StockCreatePage: React.FC<any> = () => {
         onSubmit={(values, { setSubmitting }) => {
           let formData = new FormData();
           formData.append("name", values.name);
-          formData.append("price", values.price);
-          formData.append("stock", values.stock);
-          formData.append("image", values.file);
-          dispatch(stockActions.addProduct(formData, props.history));
+          formData.append("price", String(values.price));
+          formData.append("stock", String(values.stock));
+          formData.append("image", values.file!);
+          dispatch(stockActions.addProduct(formData, history));
           setSubmitting(false);
         }}
       >
