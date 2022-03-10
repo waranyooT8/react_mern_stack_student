@@ -7,6 +7,7 @@ import {
 import { LoginResult } from "../types/auth-result.type";
 import { User } from "../types/user.type";
 import { httpClient } from "../utils/HttpClient";
+import { HistoryProp } from "../types/history.type";
 
 export const setLoginFetchingToState = () => ({
   type: LOGIN_FETCHING,
@@ -22,7 +23,7 @@ export const setLoginFailedToState = (payload: string) => ({
   payload,
 });
 
-export const login = (user: User, history: any) => {
+export const login = (user: User, history: HistoryProp) => {
   return async (dispatch: any) => {
     try {
       dispatch(setLoginFetchingToState());

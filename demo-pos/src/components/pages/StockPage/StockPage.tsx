@@ -5,7 +5,15 @@ type StockPageProps = {
 };
 
 const StockPage: React.FC<any> = () => {
-  return <div>StockPage</div>;
+  return (
+    <>
+      <h1>StockPage</h1>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </>
+  );
 };
 
 export default StockPage;
