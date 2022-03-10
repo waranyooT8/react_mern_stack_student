@@ -9,13 +9,14 @@ type StockCardProp = {
   color: string;
 };
 
-const StockCard = (props: StockCardProp) => {
+// const StockCard = (props: StockCardProp) => {
+const StockCard: React.FC<StockCardProp> = (props) => {
   return (
     <Card>
       <Grid container style={{ minHeight: 70 }}>
         <Grid item sx={{ flexGrow: 1, height: 100, padding: 1 }}>
           <Typography variant="h4" color="textPrimary">
-            {props.title}
+            {props}
           </Typography>
           <Typography variant="h5" color="textSecondary">
             {props.subtitle}
