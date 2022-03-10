@@ -10,6 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { imageUrl } from "../../../constants";
+import Moment from "react-moment";
 
 type StockPageProps = {
   //
@@ -75,7 +76,7 @@ const StockPage: React.FC<any> = () => {
                 {row.price}
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.created}
+                <Moment format="DD/MM/YYYY HH:mm">{row.created}</Moment>
               </TableCell>
             </TableRow>
           ))}
