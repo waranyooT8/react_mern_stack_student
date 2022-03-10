@@ -16,7 +16,15 @@ type StockCreatePageProps = {
 
 const StockCreatePage: React.FC<any> = () => {
   const showForm = (props: any) => {
-    
+    <Form>
+      <Card>
+        <CardContent sx={{ padding: 4 }}>
+          <Typography gutterBottom variant="h3">
+            Create Stock
+          </Typography>
+        </CardContent>
+      </Card>
+    </Form>;
   };
 
   return (
