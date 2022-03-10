@@ -4,13 +4,14 @@ import {
   STOCK_FETCHING,
   STOCK_SUCCESS,
 } from "../constants";
+import { Product } from "../types/product.type";
 import { httpClient } from "../utils/HttpClient";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_FETCHING,
 });
 
-export const setStockSuccessToState = (payload: any) => ({
+export const setStockSuccessToState = (payload: Product[]) => ({
   type: STOCK_SUCCESS,
   payload,
 });
@@ -22,7 +23,12 @@ export const setStockFailedToState = (payload: string) => ({
 
 export const loadStock = () => {
   return async (dispatch: any) => {
-    dispatch(setStockFetchingToState());
-    const result = await httpClient.get<any>(server.PRODUCT_URL);
+    try {
+      dispatch(setStockFetchingToState());
+      const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
+      dispatch(setStockSuccessToState(result.data));
+    } catch (e) {
+      dispatch(setStockFailedToState("Failed"));
+    }
   };
 };
