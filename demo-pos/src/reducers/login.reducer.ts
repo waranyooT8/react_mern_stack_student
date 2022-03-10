@@ -1,4 +1,9 @@
-import { LOGIN_FAILED, LOGIN_FETCHING, LOGIN_SUCCESS } from "../constants";
+import {
+  LOGIN_FAILED,
+  LOGIN_FETCHING,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "../constants";
 import { LoginResult } from "../types/auth-result.type";
 
 export interface LoginState {
@@ -20,6 +25,13 @@ export default (state = initialState, { type, payload }: any): LoginState => {
       return { ...state, isFetching: false, isError: false, result: payload };
     case LOGIN_FAILED:
       return { ...state, isFetching: false, isError: true };
+    case LOGOUT:
+      return {
+        ...state,
+        isFetching: false,
+        isError: false,
+        result: { refreshToken: "", token: "", error: "", result: "" },
+      };
     default:
       return state;
   }
