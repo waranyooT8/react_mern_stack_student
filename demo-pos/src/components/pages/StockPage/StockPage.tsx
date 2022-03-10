@@ -45,10 +45,11 @@ export default (props: any) => {
   const [openMy, setOpenMy] = useState<boolean>(false);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [value, setValue] = useDebounce("", 500);
+  // const [value, setValue] = useDebounce("", 500);
+  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
-    // dispatch(stockActions.getProductByKeyword(value));
+    dispatch(stockActions.getProductByKeyword(value));
   }, [value]);
 
   useEffect(() => {
@@ -153,7 +154,6 @@ export default (props: any) => {
         <input type="text" hidden />
         <InputBase
           onChange={(e) => {
-            dispatch(stockActions.getProductByKeyword(e.target.value));
             setValue(e.target.value);
             e.stopPropagation();
             e.preventDefault();
