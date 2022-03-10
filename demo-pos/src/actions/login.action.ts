@@ -29,6 +29,10 @@ export const login = (user: User, history: HistoryProp) => {
       dispatch(setLoginFetchingToState());
       const result = await httpClient.post<LoginResult>(server.LOGIN_URL, user);
       if (result.data.result === "ok") {
+        const { token, refreshToken } = result.data;
+        localStorage.setItem(server.TOKEN_KEY, token);
+        localStorage.setItem(server.REFRESH_TOKEN_KEY, refreshToken);
+
         dispatch(setLoginSuccessToState(result.data));
         history.push("/stock");
       } else {
