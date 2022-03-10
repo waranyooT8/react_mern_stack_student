@@ -7,7 +7,7 @@ import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-material-ui";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { RootReducer } from "../../../reducers";
 import { StockEditState } from "../../../reducers/stock.edit.reducer";
 import { Product } from "../../../types/product.type";
@@ -16,14 +16,15 @@ import { imageUrl } from "./../../../constants";
 
 export default () => {
   const match = useRouteMatch<any>();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [isReady, setIsReady] = React.useState(false);
   // const stockEditReducer = useSelector(
   //   (state: RootReducer) => state.stockEditReducer
   // );
 
-  const stockEditReducer: StockEditState = useSelector(
-    ({ stockEditReducer }: any) => stockEditReducer
+  const stockEditReducer = useSelector(
+    ({ stockEditReducer }: RootReducer) => stockEditReducer
   );
 
   useEffect(() => {
@@ -154,7 +155,7 @@ export default () => {
           if (values.file) {
             formData.append("image", values.file);
           }
-          // dispatch(stockEditActions.updateProduct(formData, props.history));
+          dispatch(stockEditActions.updateProduct(formData, history));
         }}
       >
         {isReady ? (props) => showForm(props) : null}
