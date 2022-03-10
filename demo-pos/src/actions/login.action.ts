@@ -2,6 +2,7 @@ import {
   LOGIN_FAILED,
   LOGIN_FETCHING,
   LOGIN_SUCCESS,
+  LOGOUT,
   server,
 } from "../constants";
 import { LoginResult } from "../types/auth-result.type";
@@ -22,6 +23,19 @@ export const setLoginFailedToState = (payload: string) => ({
   type: LOGIN_FAILED,
   payload,
 });
+
+export const setLoginLogoutToState = () => ({
+  type: LOGOUT,
+});
+
+export const logout = (history: any) => {
+  return (dispatch: any) => {
+    localStorage.removeItem(server.TOKEN_KEY);
+    localStorage.removeItem(server.REFRESH_TOKEN_KEY);
+    dispatch(setLoginLogoutToState());
+    history.push("/login");
+  };
+};
 
 export const login = (user: User, history: HistoryProp) => {
   return async (dispatch: any) => {
