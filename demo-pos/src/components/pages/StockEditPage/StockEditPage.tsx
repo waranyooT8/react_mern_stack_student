@@ -1,12 +1,14 @@
 import * as React from "react";
+import { useRouteMatch } from "react-router-dom";
 
 type StockEditPageProps = {
   //
 };
 
-const StockEditPage: React.FC<any> = (props: any) => {
+const StockEditPage: React.FC<any> = () => {
+  const match = useRouteMatch<any>();
   React.useEffect(() => {
-    let id = props.match.params.id;
+    let id = match.params.id;
     alert(id);
   }, []);
 
