@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Field, Form, Formik, FormikProps } from "formik";
 import { TextField } from "formik-material-ui";
-import React from "react";
+import React, { ReactEventHandler } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Product } from "../../../types/product.type";
@@ -16,7 +16,7 @@ type StockCreatePageProps = {
 };
 
 const StockCreatePage: React.FC<any> = () => {
-  const showForm = ({ values }: FormikProps<Product>) => {
+  const showForm = ({ values, setFieldValue }: FormikProps<Product>) => {
     return (
       <Form>
         <Card>
@@ -67,6 +67,10 @@ const StockCreatePage: React.FC<any> = () => {
               </span>
 
               <input
+                onChange={(e: any) => {
+                  setFieldValue("file", e.target.files[0]); // for upload
+                  setFieldValue("file_obj",URL.createObjectURL(e.target.files[0])); // for preview image
+                }}
                 type="file"
                 name="image"
                 click-type="type1"
