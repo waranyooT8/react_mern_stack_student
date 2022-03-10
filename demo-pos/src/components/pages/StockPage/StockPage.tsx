@@ -45,8 +45,8 @@ export default (props: any) => {
   const [openMy, setOpenMy] = useState<boolean>(false);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  // const [value, setValue] = useDebounce("", 500);
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useDebounce("", 1000);
+  // const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     dispatch(stockActions.getProductByKeyword(value));
