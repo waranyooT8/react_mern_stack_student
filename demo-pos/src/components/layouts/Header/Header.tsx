@@ -9,6 +9,8 @@ import * as React from "react";
 import MailIcon from "@mui/icons-material/Mail";
 
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as loginActions from "../../../actions/login.action";
 
 const drawerWidth = 240;
 const menuId = "primary-search-account-menu";
@@ -72,7 +74,10 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ handleDrawerOpen, open }) => {
   const history = useHistory();
-  const logout = () => {};
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(loginActions.logout(history));
+  };
 
   return (
     <AppBar position="fixed" open={open}>
