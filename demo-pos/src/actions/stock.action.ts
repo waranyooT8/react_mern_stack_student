@@ -7,6 +7,7 @@ import {
 import { HistoryProp } from "../types/history.type";
 import { Product } from "../types/product.type";
 import { httpClient } from "../utils/HttpClient";
+import { setStateStockToSuccess } from "./stock.edit.action";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_FETCHING,
@@ -50,5 +51,20 @@ export const deleteProduct = (id: any) => {
     dispatch(setStockFetchingToState());
     await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
     await doLoadStock(dispatch);
+  };
+};
+
+export const getProductByKeyword = (keyword: string) => {
+  return async (dispatch: any) => {
+    dispatch(setStockFetchingToState());
+
+    if (!keyword) {
+      let result = await httpClient.get(
+        `${server.PRODUCT_URL}/name/${keyword}`
+      );
+      dispatch(setStateStockToSuccess(result.data));
+    } else {
+      doLoadStock(dispatch);
+    }
   };
 };
