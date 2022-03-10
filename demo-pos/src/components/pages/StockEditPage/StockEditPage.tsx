@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { RootReducer } from "../../../reducers";
 import { StockEditState } from "../../../reducers/stock.edit.reducer";
+import { Product } from "../../../types/product.type";
 import * as stockEditActions from "./../../../actions/stock.edit.action";
 import { imageUrl } from "./../../../constants";
 
@@ -135,14 +136,14 @@ export default () => {
     }
   };
 
+  const initialValues: Product = { name: "Loading...", stock: 10, price: 90 };
+
   return (
     <div>
       <Formik
         enableReinitialize
         initialValues={
-          stockEditReducer.result
-            ? stockEditReducer.result
-            : { name: "loading", price: 0, stock: 0 }
+          stockEditReducer.result ? stockEditReducer.result : initialValues
         }
         onSubmit={(values: any, { setSubmitting }) => {
           let formData = new FormData();
