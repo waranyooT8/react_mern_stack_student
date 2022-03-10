@@ -82,7 +82,9 @@ export default function App(props: AppProps) {
                 <Route path="/report" component={ReportPage} />
                 <Route path="/transaction" component={TransactionPage} />
                 <Redirect exact={true} path="/" to="/login" />
-                <Route path="/" component={NotFound} />
+                <Route path="/">
+                  <NotFound />
+                </Route>
               </Switch>
             </Container>
           </Box>
