@@ -153,7 +153,7 @@ export default (props: any) => {
         <input type="text" hidden />
         <InputBase
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(stockActions.getProductByKeyword(e.target.value));
             setValue(e.target.value);
             e.stopPropagation();
             e.preventDefault();

@@ -58,11 +58,11 @@ export const getProductByKeyword = (keyword: string) => {
   return async (dispatch: any) => {
     dispatch(setStockFetchingToState());
 
-    if (!keyword) {
+    if (keyword) {
       let result = await httpClient.get(
         `${server.PRODUCT_URL}/name/${keyword}`
       );
-      dispatch(setStateStockToSuccess(result.data));
+      dispatch(setStockSuccessToState(result.data));
     } else {
       doLoadStock(dispatch);
     }
