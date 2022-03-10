@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { imageUrl } from "../../../constants";
 import Moment from "react-moment";
+import NumberFormat from "react-number-format";
 
 type StockPageProps = {
   //
@@ -73,7 +74,14 @@ const StockPage: React.FC<any> = () => {
                 {row.stock}
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.price}
+                <NumberFormat
+                  value={row.price}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  decimalScale={0}
+                  suffix={"THB"}
+                  fixedDecimalScale={true}
+                />
               </TableCell>
               <TableCell component="th" scope="row">
                 <Moment format="DD/MM/YYYY HH:mm">{row.created}</Moment>
