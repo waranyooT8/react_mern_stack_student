@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Field, Form, Formik } from "formik";
+import { Field, Form, Formik, FormikProps } from "formik";
 import { TextField } from "formik-material-ui";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ type StockCreatePageProps = {
 };
 
 const StockCreatePage: React.FC<any> = () => {
-  const showForm = (props: any) => {
+  const showForm = ({ values }: FormikProps<Product>) => {
     return (
       <Form>
         <Card>
