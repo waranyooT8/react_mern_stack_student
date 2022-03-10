@@ -24,14 +24,18 @@ export const setStockFailedToState = (payload: string) => ({
 
 export const loadStock = () => {
   return async (dispatch: any) => {
-    try {
-      dispatch(setStockFetchingToState());
-      const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
-      dispatch(setStockSuccessToState(result.data));
-    } catch (e) {
-      dispatch(setStockFailedToState("Failed"));
-    }
+    dispatch(setStockFetchingToState());
+    await doLoadStock(dispatch);
   };
+};
+
+const doLoadStock = async (dispatch: any) => {
+  try {
+    const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
+    dispatch(setStockSuccessToState(result.data));
+  } catch (e) {
+    dispatch(setStockFailedToState("Failed"));
+  }
 };
 
 export const addProduct = (formData: any, history: HistoryProp) => {
@@ -45,6 +49,6 @@ export const deleteProduct = (id: any) => {
   return async (dispatch: any) => {
     dispatch(setStockFetchingToState());
     await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
-    await doGetProducts(dispatch);
+    await doLoadStock(dispatch);
   };
 };
