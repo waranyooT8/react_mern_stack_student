@@ -16,45 +16,47 @@ type StockCreatePageProps = {
 
 const StockCreatePage: React.FC<any> = () => {
   const showForm = (props: any) => {
-    <Form>
-      <Card>
-        <CardContent sx={{ padding: 4 }}>
-          <Typography gutterBottom variant="h3">
-            Create Stock
-          </Typography>
+    return (
+      <Form>
+        <Card>
+          <CardContent sx={{ padding: 4 }}>
+            <Typography gutterBottom variant="h3">
+              Create Stock
+            </Typography>
 
-          <Field
-            style={{ marginTop: 16 }}
-            fullWidth
-            component={TextField}
-            name="name"
-            type="text"
-            label="Name"
-          />
-          <br />
+            <Field
+              style={{ marginTop: 16 }}
+              fullWidth
+              component={TextField}
+              name="name"
+              type="text"
+              label="Name"
+            />
+            <br />
 
-          <Field
-            style={{ marginTop: 16 }}
-            fullWidth
-            component={TextField}
-            name="stock"
-            type="number"
-            label="Stock"
-          />
-          <br />
+            <Field
+              style={{ marginTop: 16 }}
+              fullWidth
+              component={TextField}
+              name="stock"
+              type="number"
+              label="Stock"
+            />
+            <br />
 
-          <Field
-            style={{ marginTop: 16 }}
-            fullWidth
-            component={TextField}
-            name="price"
-            type="number"
-            label="Price"
-          />
-          <br />
-        </CardContent>
-      </Card>
-    </Form>;
+            <Field
+              style={{ marginTop: 16 }}
+              fullWidth
+              component={TextField}
+              name="price"
+              type="number"
+              label="Price"
+            />
+            <br />
+          </CardContent>
+        </Card>
+      </Form>
+    );
   };
 
   return (
