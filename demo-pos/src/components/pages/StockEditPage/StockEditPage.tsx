@@ -8,20 +8,18 @@ import { TextField } from "formik-material-ui";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { RootReducers } from "../../../reducers";
-import * as stockEditActions from "./../../../actions/stock.edit.action";
+import { RootReducer } from "../../../reducers";
+// import * as stockEditActions from "./../../../actions/stock.edit.action";
 import { imageUrl } from "./../../../constants";
 
 export default (props: any) => {
   const dispatch = useDispatch();
   const [isReady, setIsReady] = React.useState(false);
-  const stockEditReducer = useSelector(
-    (state: RootReducers) => state.stockEditReducer
-  );
+  // const stockEditReducer = useSelector((state: RootReducer) => state.stockEditReducer);
 
   useEffect(() => {
     let id = props.match.params.id;
-    dispatch(stockEditActions.getProductById(id));
+    // dispatch(stockEditActions.getProductById(id));
     setTimeout(() => setIsReady(true), 100);
   }, []);
 
@@ -147,7 +145,7 @@ export default (props: any) => {
           if (values.file) {
             formData.append("image", values.file);
           }
-          dispatch(stockEditActions.updateProduct(formData, props.history));
+          // dispatch(stockEditActions.updateProduct(formData, props.history));
         }}
       >
         {isReady ? (props) => showForm(props) : null}
