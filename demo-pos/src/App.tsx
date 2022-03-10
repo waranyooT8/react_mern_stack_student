@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import * as React from "react";
 import {
   BrowserRouter as Router,
+  Link,
   Redirect,
   Route,
   RouteProps,
@@ -56,21 +57,21 @@ export default function App(props: AppProps) {
       <Router
         basename={process.env.REACT_APP_IS_PRODUCTION === "1" ? "/demo" : ""}
       >
-        <Switch>
-          <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            {/* Header */}
-            <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-            <Menu open={open} handleDrawerClose={handleDrawerClose} />
-            <Box
-              component="main"
-              sx={{
-                flexGrow: 1,
-                p: 3,
-              }}
-            >
-              <Container>
-                <DrawerHeader />
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          {/* Header */}
+          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+          <Menu open={open} handleDrawerClose={handleDrawerClose} />
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              p: 3,
+            }}
+          >
+            <Container>
+              <DrawerHeader />
+              <Switch>
                 {/* Pages Define */}
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
@@ -81,14 +82,19 @@ export default function App(props: AppProps) {
                 <Route path="/report" component={ReportPage} />
                 <Route path="/transaction" component={TransactionPage} />
                 <Redirect exact={true} path="/" to="/login" />
-                {/* <Route path="/" component={NotFoundPage} /> */}
-              </Container>
-            </Box>
+                <Route path="/" component={NotFound} />
+              </Switch>
+            </Container>
           </Box>
-        </Switch>
+        </Box>
       </Router>
     </ThemeProvider>
   );
 }
 
-const NotFoundPage = () => <div>Not found</div>;
+const NotFound = () => (
+  <div>
+    <h1>404 - Not Found!</h1>
+    <Link to="/">Go Home</Link>
+  </div>
+);
