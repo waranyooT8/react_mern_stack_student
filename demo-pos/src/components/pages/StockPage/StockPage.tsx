@@ -137,13 +137,17 @@ export default (props: any) => {
     );
   };
 
+  const ImageIcon = () => (
+    <img src="https://www.codemobiles.com/biz/images/cm_logo.svg?ref=10" />
+  );
+
   return (
     <Box>
       {/* Summary Icons */}
       <Grid container style={{ marginBottom: 16 }} spacing={7}>
         <Grid item lg={3} md={6}>
           <StockCard
-            icon={AddShoppingCartIcon}
+            icon={ImageIcon}
             title="TOTAL"
             subtitle="112 THB"
             color="#00a65a"

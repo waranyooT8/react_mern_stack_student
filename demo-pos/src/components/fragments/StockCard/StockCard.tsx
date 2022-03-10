@@ -16,7 +16,7 @@ const StockCard: React.FC<StockCardProp> = (props) => {
       <Grid container style={{ minHeight: 70 }}>
         <Grid item sx={{ flexGrow: 1, height: 100, padding: 1 }}>
           <Typography variant="h4" color="textPrimary">
-            {props}
+            {props.title}
           </Typography>
           <Typography variant="h5" color="textSecondary">
             {props.subtitle}
@@ -33,7 +33,9 @@ const StockCard: React.FC<StockCardProp> = (props) => {
             justifyContent: "center",
             minWidth: 70,
           }}
-        ></Grid>
+        >
+          <props.icon />
+        </Grid>
       </Grid>
     </Card>
   );
