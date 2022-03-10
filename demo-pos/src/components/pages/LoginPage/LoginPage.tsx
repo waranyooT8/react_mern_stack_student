@@ -86,7 +86,7 @@ export default (props: LoginProps) => {
           Sign In
         </Button>
 
-        <button onClick={() => props.history.push("/shop")}> Test</button>
+        {/* <button onClick={() => history.push("/shop")}> Test</button> */}
         {isSubmitting && <CircularProgress style={{ marginTop: 10 }} />}
         <Grid container>
           <Link component={RouterLink} to="/register" variant="body2">
