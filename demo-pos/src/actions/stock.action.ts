@@ -40,3 +40,11 @@ export const addProduct = (formData: any, history: HistoryProp) => {
     history.goBack();
   };
 };
+
+export const deleteProduct = (id: any) => {
+  return async (dispatch: any) => {
+    dispatch(setStockFetchingToState());
+    await httpClient.delete(`${server.PRODUCT_URL}/id/${id}`);
+    await doGetProducts(dispatch);
+  };
+};
