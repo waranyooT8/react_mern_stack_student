@@ -1,4 +1,5 @@
-import { STOCK_FAILED, STOCK_FETCHING, STOCK_SUCCESS } from "../constants";
+import { server, STOCK_FAILED, STOCK_FETCHING, STOCK_SUCCESS } from "../constants";
+import { httpClient } from "../utils/HttpClient";
 
 export const setStockFetchingToState = () => ({
   type: STOCK_FETCHING,
@@ -14,4 +15,10 @@ export const setStockFailedToState = (payload: string) => ({
   payload,
 });
 
-export const loadStock = () => {};
+export const loadStock = () => {
+  return async (dispatch: any) => {
+      dispatch(setStockFetchingToState())
+      const result = await httpClient.get(server.PRODUCT_URL)  
+
+  };
+};
