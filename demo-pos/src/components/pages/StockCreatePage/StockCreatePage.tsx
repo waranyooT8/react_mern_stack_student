@@ -54,6 +54,21 @@ const StockCreatePage: React.FC<any> = () => {
             />
             <br />
           </CardContent>
+
+          <CardActions>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{ marginRight: 1 }}
+            >
+              Create
+            </Button>
+            <Button component={Link} to="/stock" variant="outlined" fullWidth>
+              Cancl
+            </Button>
+          </CardActions>
         </Card>
       </Form>
     );
@@ -64,6 +79,7 @@ const StockCreatePage: React.FC<any> = () => {
       <Formik
         initialValues={{ name: "", stock: 10, price: 90 }}
         onSubmit={(values: any, { setSubmitting }) => {
+          alert(JSON.stringify(values));
           setSubmitting(false);
         }}
       >
