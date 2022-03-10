@@ -18,11 +18,14 @@ const initialState: StockState = {
   isError: false,
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (state = initialState, { type, payload }: any): StockState => {
   switch (type) {
-    case first:
-      return { ...state, ...payload };
-
+    case STOCK_FETCHING:
+      return { ...state, isFetching: true, isError: false, result: [] };
+    case STOCK_SUCCESS:
+      return { ...state, isFetching: false, isError: false, result: payload };
+    case STOCK_FAILED:
+      return { ...state, isFetching: false, isError: true, result: [] };
     default:
       return state;
   }
