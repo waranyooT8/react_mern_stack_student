@@ -9,8 +9,9 @@ const StockPage: React.FC<any> = () => {
     <>
       <h1>StockPage</h1>
       <ul>
-        <li>1</li>
-        <li>2</li>
+        {[1, 2, 3, 4, 5].map((item) => (
+          <li>{item}</li>
+        ))}
       </ul>
     </>
   );
