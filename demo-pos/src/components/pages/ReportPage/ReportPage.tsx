@@ -7,7 +7,8 @@ import { Chart } from "react-chartjs-2";
 
 export default () => {
   const [chartType, setChartType] = useState<string>("bar");
-  const [chartData, setChartData] = useState([]);
+  const [chartData1, setChartData1] = useState([]);
+  const [chartData2, setChartData2] = useState([]);
 
   function getRandomInt(): any {
     let randoms = [];
@@ -47,7 +48,7 @@ export default () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: chartData,
+        data: chartData1,
       },
       {
         label: "Revenue 2023",
@@ -62,7 +63,7 @@ export default () => {
           "rgba(255, 159, 64, 0.2)",
           "rgba(255, 99, 132, 0.2)",
         ],
-        borderColor: "rgba(75,192,192,1)",
+        borderColor: "rgba(255, 99, 132, 1)",
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -76,7 +77,7 @@ export default () => {
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: chartData,
+        data: chartData2,
       },
     ],
   };
@@ -89,7 +90,7 @@ export default () => {
           ticks: {
             beginAtZero: true,
             callback: function (value: any, index: any, values: any) {
-              return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              return "xx";
             },
           },
         },
@@ -98,7 +99,8 @@ export default () => {
   };
 
   useEffect(() => {
-    setChartData(getRandomInt());
+    setChartData1(getRandomInt());
+    setChartData2(getRandomInt());
   }, []);
 
   return (
@@ -131,7 +133,8 @@ export default () => {
       <IconButton
         aria-label="refresh"
         onClick={() => {
-          setChartData(getRandomInt());
+          setChartData1(getRandomInt());
+          setChartData2(getRandomInt());
         }}
       >
         <RefreshIcon />
