@@ -32,6 +32,26 @@ const StockCreatePage: React.FC<any> = () => {
             label="Name"
           />
           <br />
+
+          <Field
+            style={{ marginTop: 16 }}
+            fullWidth
+            component={TextField}
+            name="stock"
+            type="number"
+            label="Stock"
+          />
+          <br />
+
+          <Field
+            style={{ marginTop: 16 }}
+            fullWidth
+            component={TextField}
+            name="price"
+            type="number"
+            label="Price"
+          />
+          <br />
         </CardContent>
       </Card>
     </Form>;
