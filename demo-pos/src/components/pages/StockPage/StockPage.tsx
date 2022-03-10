@@ -56,8 +56,7 @@ export default (props: any) => {
   }, []);
 
   const handleDeleteConfirm = () => {
-    // dispatch(stockActions.deleteProduct(selectedProduct.product_id));
-    // dispatch(stockActions.getProducts());
+    dispatch(stockActions.deleteProduct(selectedProduct.product_id));
     setOpenDialog(false);
   };
 
