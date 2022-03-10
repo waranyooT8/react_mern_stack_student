@@ -19,8 +19,11 @@ import { User } from "../../../types/user.type";
 import { httpClient } from "../../../utils/HttpClient";
 import * as loginActions from "../../../actions/login.action";
 import { RootReducer } from "../../../reducers";
+import { HistoryProp } from "../../../types/history.type";
 
-type LoginProps = {};
+type LoginProps = {
+  history: HistoryProp;
+};
 
 export default (props: LoginProps) => {
   const history = useHistory();
@@ -82,6 +85,8 @@ export default (props: LoginProps) => {
         >
           Sign In
         </Button>
+
+        <button onClick={() => props.history.push("/shop")}> Test</button>
         {isSubmitting && <CircularProgress style={{ marginTop: 10 }} />}
         <Grid container>
           <Link component={RouterLink} to="/register" variant="body2">

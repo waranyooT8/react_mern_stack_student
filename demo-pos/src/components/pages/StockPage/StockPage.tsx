@@ -51,27 +51,8 @@ export default (props: any) => {
   }, [value]);
 
   useEffect(() => {
-    // dispatch(stockActions.getProducts());
+    dispatch(stockActions.loadStock());
   }, []);
-
-  const actions = [
-    {
-      icon: "edit",
-      iconProps: { color: "primary" },
-      tooltip: "Edit",
-      onClick: (event: any, rowData: any) =>
-        props.history.push("/stock/edit/" + rowData.product_id),
-    },
-    {
-      icon: "delete",
-      iconProps: { color: "action" },
-      tooltip: "Delete",
-      onClick: (event: any, rowData: any) => {
-        setSelectedProduct(rowData);
-        setOpenDialog(true);
-      },
-    },
-  ];
 
   const handleDeleteConfirm = () => {
     // dispatch(stockActions.deleteProduct(selectedProduct.product_id));
