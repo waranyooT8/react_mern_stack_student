@@ -42,6 +42,7 @@ export default (props: any) => {
   const stockReducer = useSelector((state: RootReducer) => state.stockReducer);
   const dispatch = useDispatch();
 
+  const [openMy, setOpenMy] = useState<boolean>(false);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [value, setValue] = useDebounce("", 500);
@@ -62,6 +63,10 @@ export default (props: any) => {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleCloseMy = () => {
+    setOpenMy(false);
   };
 
   const showMyDialog = () => {
@@ -169,7 +174,13 @@ export default (props: any) => {
         >
           <AddIcon />
         </IconButton>
+
+        {/* <button type="button" onClick={() => setOpenMy(true)}>
+          show my dialog
+        </button> */}
       </Paper>
+
+      {showMyDialog()}
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
