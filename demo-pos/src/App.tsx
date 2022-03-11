@@ -23,6 +23,7 @@ import StockPage from "./components/pages/StockPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import { useDispatch, useSelector } from "react-redux";
 import { RootReducer } from "./reducers";
+import * as loginActions from "./actions/login.action";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -45,6 +46,11 @@ type AppProps = {};
 export default function App(props: AppProps) {
   const [open, setOpen] = React.useState(true);
   const loginReducer = useSelector((state: RootReducer) => state.loginReducer);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(loginActions.handleReLogin());
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -76,7 +82,7 @@ export default function App(props: AppProps) {
   );
 
   // Login Route
-  const LoginRoute = ({ component: Component, ...rest }: CommonRouteProps) => (
+  const LoginRoute = ({ component: Component, ...rest }: any) => (
     <Route
       {...rest}
       render={(props) =>
@@ -114,7 +120,7 @@ export default function App(props: AppProps) {
               <DrawerHeader />
               <Switch>
                 {/* Pages Define */}
-                <Route path="/login" component={LoginPage} />
+                <LoginRoute path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <SecuredRoute path="/shop" component={ShopPage} />
                 <SecuredRoute

@@ -57,3 +57,22 @@ export const login = (user: User, history: HistoryProp) => {
     }
   };
 };
+
+
+export const handleReLogin = () => {
+  return (dispatch: any) => {
+    const token = localStorage.getItem(server.TOKEN_KEY);
+    const refreshToken = localStorage.getItem(server.REFRESH_TOKEN_KEY);
+
+    if (token) {
+      dispatch(
+        setLoginSuccessToState({
+          token,
+          result: "ok",
+          refreshToken: refreshToken!,
+        })
+      );
+    }
+  };
+};
+
