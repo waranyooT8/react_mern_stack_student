@@ -81,7 +81,7 @@ export default () => {
               </span>
               <input
                 type="file"
-                onChange={(e: any) => {
+                onChange={(e: React.ChangeEvent<any>) => {
                   e.preventDefault();
                   setFieldValue("file", e.target.files[0]); // for upload
                   setFieldValue(

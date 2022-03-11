@@ -109,7 +109,7 @@ const Menu: React.FC<MenuProps> = ({ handleDrawerClose, open }) => {
       <DrawerHeader sx={{ backgroundColor: "#1976d2" }}>
         <Stack direction="row" alignItems="center">
           <img
-            src={`${process.env.PUBLIC_URL}/images/codemobiles_logo.png`}
+            src={`${process.env.PUBLIC_URL}/images/cm_logo.png`}
             style={{ height: 30 }}
           />
           <IconButton onClick={handleDrawerClose}>
