@@ -16,6 +16,9 @@ router.get("/transaction", async (req, res) => {
     {
       $unwind: "$staff",
     },
+    {
+      $set: {staff_id: "$staff.username"}
+    }
   ]);
   res.json(doc);
 });
