@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ handleDrawerOpen, open }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          cmPOS - MERN STACK WORKSHOP
+          cmPOS - MERN STACK WORKSHOP VER-{process.env.REACT_APP_VERSION}
         </Typography>
 
         <Box sx={{ flexGrow: 1 }} />

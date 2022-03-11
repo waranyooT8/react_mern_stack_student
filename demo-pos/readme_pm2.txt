@@ -32,3 +32,8 @@ pm2 resurrect
 
 yarn global add serve
 serve -s . -p 80
+
+#nginx cli
+nginx // start
+nginx -s stop // stop
+nginx -t // verify sytax or check config location
