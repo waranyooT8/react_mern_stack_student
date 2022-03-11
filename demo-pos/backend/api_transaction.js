@@ -39,4 +39,9 @@ router.get("/transaction", async (req, res) => {
   res.json(doc);
 });
 
+router.post("/transaction", async (req, res) => {
+  const doc = await Transactions.create(req.body);
+  res.json({ result: "ok" });
+});
+
 module.exports = router;
