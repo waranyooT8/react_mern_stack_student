@@ -87,7 +87,7 @@ export default function App(props: AppProps) {
       {...rest}
       render={(props) =>
         loginReducer.result?.token ? (
-          <Redirect to="/stock" />
+          <Redirect to="/report" />
         ) : (
           <Component {...props} />
         )
