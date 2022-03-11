@@ -22,6 +22,14 @@ router.get("/transaction", async (req, res) => {
     {
       $project: { staff: 0 },
     },
+    // {
+    //   $match: {
+    //     timestamp: {
+    //       $gte: new Date("2018-01-01"),
+    //       $lt: new Date("2020-09-30"),
+    //     },
+    //   },
+    // },
   ]);
   res.json(doc);
 });
