@@ -83,8 +83,12 @@ export default function App(props: AppProps) {
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
           {/* Header */}
-          <Header open={open} handleDrawerOpen={handleDrawerOpen} />
-          <Menu open={open} handleDrawerClose={handleDrawerClose} />
+          {loginReducer.result?.token && (
+            <Header open={open} handleDrawerOpen={handleDrawerOpen} />
+          )}
+          {loginReducer.result?.token && (
+            <Menu open={open} handleDrawerClose={handleDrawerClose} />
+          )}
           <Box
             component="main"
             sx={{
@@ -99,11 +103,21 @@ export default function App(props: AppProps) {
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <SecuredRoute path="/shop" component={ShopPage} />
-                <Route exact={true} path="/stock" component={StockPage} />
-                <Route path="/stock/create" component={StockCreatePage} />
-                <Route path="/stock/edit/:id" component={StockEditPage} />
-                <Route path="/report" component={ReportPage} />
-                <Route path="/transaction" component={TransactionPage} />
+                <SecuredRoute
+                  exact={true}
+                  path="/stock"
+                  component={StockPage}
+                />
+                <SecuredRoute
+                  path="/stock/create"
+                  component={StockCreatePage}
+                />
+                <SecuredRoute
+                  path="/stock/edit/:id"
+                  component={StockEditPage}
+                />
+                <SecuredRoute path="/report" component={ReportPage} />
+                <SecuredRoute path="/transaction" component={TransactionPage} />
                 <Redirect exact={true} path="/" to="/login" />
                 <Route path="/">
                   <NotFound />
