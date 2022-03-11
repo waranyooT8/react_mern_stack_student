@@ -7,6 +7,7 @@ export interface Product {
   price: number;
   created?: Date;
   __v?: number;
+  qty?: number;
 
   file?: Blob;
 }

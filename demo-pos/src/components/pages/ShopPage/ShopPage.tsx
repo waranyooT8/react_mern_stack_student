@@ -23,8 +23,8 @@ import Payment from "./../../fragments/Payment/Payment";
 import classes from "./ShopPage.styles";
 
 export default (props: any) => {
-  const shopReducer = useSelector((state: RootReducers) => state.shopReducer);
-  const stockReducer = useSelector((state: RootReducers) => state.stockReducer);
+  const shopReducer = useSelector((state: RootReducer) => state.shopReducer);
+  const stockReducer = useSelector((state: RootReducer) => state.stockReducer);
   const dispatch = useDispatch();
   const renderPayment = () => {
     return (
@@ -161,7 +161,7 @@ export default (props: any) => {
   };
 
   useEffect(() => {
-    dispatch(stockActions.getProducts());
+    dispatch(stockActions.loadStock());
   }, []);
 
   return (
