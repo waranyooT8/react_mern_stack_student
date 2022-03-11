@@ -1,46 +1,184 @@
-import * as React from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as transactionActions from "./../../../actions/transaction.action";
+import Moment from "react-moment";
+import NumberFormat from "react-number-format";
+
+import { imageUrl } from "./../../../constants";
+import {
+  DataGrid,
+  GridColDef,
+  GridColumns,
+  GridRenderCellParams,
+  GridRowId,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import { RootReducer } from "../../../reducers";
-import * as transactionActions from "../../../actions/transaction.action";
+import { Avatar, Grid, Paper, Stack, Typography } from "@mui/material";
 
-const columns: GridColDef[] = [
-  { field: "transaction_id", headerName: "ID", width: 70 },
-  { field: "staff_id", headerName: "StaffId", width: 130 },
-  { field: "timestamp", headerName: "Timestamp", width: 130 },
-];
-
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
-
-export default function DataTable() {
+export default (props: any) => {
   const dispatch = useDispatch();
+  const [orderList, setOrderList] = useState([]);
+  const [selectedId, setSelectedId] = useState<GridRowId>(0);
+
   const transactionReducer = useSelector(
     (state: RootReducer) => state.transactionReducer
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(transactionActions.getTransactions());
+
+    setTimeout(() => {
+      if (transactionReducer.result.length > 0) {
+        setOrderList(JSON.parse(transactionReducer.result[0].order_list));
+        setSelectedId(Number(transactionReducer.result[0].transaction_id));
+      }
+    }, 300);
   }, []);
 
+  const transactionColumns: GridColDef[] = [
+    {
+      headerName: "ID",
+      field: "transaction_id",
+      width: 50,
+    },
+
+    {
+      headerName: "DATE",
+      field: "timestamp",
+      width: 150,
+      renderCell: (params: GridRenderCellParams<string>) => (
+        <Moment format="YYYY/MM/DD hh:mm">{params.value}</Moment>
+      ),
+    },
+    {
+      headerName: "STAFF",
+      width: 120,
+      field: "staff_id",
+    },
+    {
+      headerName: "TOTAL",
+      field: "total",
+      width: 70,
+      renderCell: (params: GridRenderCellParams<string>) => (
+        <NumberFormat
+          value={params.value}
+          displayType={"text"}
+          thousandSeparator={true}
+          prefix={"฿"}
+        />
+      ),
+    },
+    {
+      headerName: "PAID",
+      field: "paid",
+      width: 70,
+      renderCell: (params: GridRenderCellParams<string>) => (
+        <NumberFormat
+          value={params.value}
+          displayType={"text"}
+          thousandSeparator={true}
+          prefix={"฿"}
+        />
+      ),
+    },
+    {
+      headerName: "#SKU",
+      width: 100,
+      field: "order_list",
+      renderCell: (params: GridRenderCellParams<any>) => (
+        <Typography>{JSON.parse(params.value).length} SKU</Typography>
+      ),
+    },
+  ];
+
+  const orderColumns = [
+    {
+      title: "ID",
+      field: "product_id",
+      render: (item: any) => (
+        <Typography variant="body1">{item.product_id}</Typography>
+      ),
+    },
+    {
+      title: "IMAGE",
+      field: "image",
+      cellStyle: { padding: 0 },
+      render: (item: any) => (
+        <img
+          src={`${imageUrl}/images/${item.image}?dummy=${Math.random()}`}
+          style={{ width: 80, height: 80, borderRadius: "5%" }}
+        />
+      ),
+    },
+    {
+      title: "NAME",
+      cellStyle: { minWidth: 400 },
+      field: "name",
+      render: (item: any) => (
+        <Typography variant="body1">{item.name}</Typography>
+      ),
+    },
+    {
+      title: "PRICE",
+      field: "price",
+      render: (item: any) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.price}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={2}
+            fixedDecimalScale={true}
+            prefix={"฿"}
+          />
+        </Typography>
+      ),
+    },
+    {
+      title: "STOCK",
+      field: "stock",
+      render: (item: any) => (
+        <Typography variant="body1">
+          <NumberFormat
+            value={item.stock}
+            displayType={"text"}
+            thousandSeparator={true}
+            decimalScale={0}
+            fixedDecimalScale={true}
+            suffix={" pcs"}
+          />
+        </Typography>
+      ),
+    },
+  ];
+
   return (
-    <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={transactionReducer.result}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </div>
+    <Paper sx={{ padding: 4 }}>
+      <Grid container spacing={2} sx={{ height: "80vh" }}>
+        <Grid item xs={7}>
+          <DataGrid
+            onSelectionModelChange={(newSelectionModel) => {
+              setSelectedId(newSelectionModel[0]);
+            }}
+            selectionModel={[selectedId]}
+            onRowClick={(e) => setOrderList(JSON.parse(e.row.order_list))}
+            rows={transactionReducer.result}
+            columns={transactionColumns}
+            rowsPerPageOptions={[5]}
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <ul>
+            {orderList.map((item: any) => (
+              <Stack direction="row" spacing={1}>
+                <Avatar src={`${imageUrl}/images/${item.image}`} />
+                <li>{item.name}</li>
+              </Stack>
+            ))}
+          </ul>
+        </Grid>
+      </Grid>
+    </Paper>
   );
-}
+};
