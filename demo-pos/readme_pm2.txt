@@ -17,9 +17,18 @@ pm2 show 0
 pm2 delete 
 
 #cluster
- pm2 start server.js -i 3
+ pm2 start server.js -i 5
  pm2 scale server +2
  pm2 scale server 2
+
+# auto startup when boot
+pm2 startup
+systemctl stop pm2.service
+
+# save and restore 
+pm2 save
+pm2 resurrect
+
 
 yarn global add serve
 serve -s . -p 80
