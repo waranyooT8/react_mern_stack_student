@@ -31,7 +31,7 @@ export default (props: any) => {
     setTimeout(() => {
       if (transactionReducer.result.length > 0) {
         setOrderList(JSON.parse(transactionReducer.result[0].order_list));
-        setSelectedId(Number(transactionReducer.result[0].transaction_id));
+        setSelectedId(Number(transactionReducer.result[0].id));
       }
     }, 300);
   }, []);
@@ -39,7 +39,7 @@ export default (props: any) => {
   const transactionColumns: GridColDef[] = [
     {
       headerName: "ID",
-      field: "transaction_id",
+      field: "id",
       width: 50,
     },
 
@@ -156,7 +156,7 @@ export default (props: any) => {
   return (
     <Paper sx={{ padding: 4 }}>
       <Grid container spacing={2} sx={{ height: "80vh" }}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
           <DataGrid
             onSelectionModelChange={(newSelectionModel) => {
               setSelectedId(newSelectionModel[0]);
@@ -168,12 +168,12 @@ export default (props: any) => {
             rowsPerPageOptions={[5]}
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
           <ul>
             {orderList.map((item: any) => (
-              <Stack direction="row" spacing={1}>
+              <Stack direction="row" spacing={2}>
                 <Avatar src={`${imageUrl}/images/${item.image}`} />
-                <li>{item.name}</li>
+                <Typography variant="body1">{item.name}</Typography>
               </Stack>
             ))}
           </ul>

@@ -16,7 +16,7 @@ export interface TransactionRequest {
 }
 
 export interface TransactionResponse {
-  transaction_id: string;
+  id: string;
   subtotal: number;
   discount: number;
   shipping_cost: number;
