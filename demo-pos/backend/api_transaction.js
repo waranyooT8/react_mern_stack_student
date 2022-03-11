@@ -40,6 +40,7 @@ router.get("/transaction", async (req, res) => {
 });
 
 router.post("/transaction", async (req, res) => {
+  req.body.staff_id = req.userId;
   const doc = await Transactions.create(req.body);
   res.json({ result: "ok", doc });
 });
