@@ -37,6 +37,10 @@ const rows = [
 ];
 
 export default function DataTable() {
+  React.useEffect(() => {
+      
+  }, [])
+  
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
