@@ -52,6 +52,27 @@ export default function App(props: AppProps) {
     setOpen(false);
   };
 
+  // Protected Route
+  type CommonRouteProps = RouteProps & {
+    component: React.FC;
+  };
+  const SecuredRoute = ({
+    component: Component,
+    ...rest
+  }: CommonRouteProps) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        // ternary condition
+        loginReducer.result ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Router
@@ -75,7 +96,7 @@ export default function App(props: AppProps) {
                 {/* Pages Define */}
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
-                <Route path="/shop" component={ShopPage} />
+                <SecuredRoute path="/shop" component={ShopPage} />
                 <Route exact={true} path="/stock" component={StockPage} />
                 <Route path="/stock/create" component={StockCreatePage} />
                 <Route path="/stock/edit/:id" component={StockEditPage} />
