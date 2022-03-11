@@ -20,7 +20,12 @@ router.get("/transaction", async (req, res) => {
       $set: { staff_id: "$staff.username" },
     },
     {
-      $project: { staff: 0 },
+      $addFields: {
+        id: "$transaction_id",
+      },
+    },
+    {
+      $project: { staff: 0, transaction_id: 0 },
     },
     // {
     //   $match: {
