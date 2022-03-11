@@ -17,8 +17,11 @@ router.get("/transaction", async (req, res) => {
       $unwind: "$staff",
     },
     {
-      $set: {staff_id: "$staff.username"}
-    }
+      $set: { staff_id: "$staff.username" },
+    },
+    {
+      $project: { staff: 0 },
+    },
   ]);
   res.json(doc);
 });
