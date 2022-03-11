@@ -66,7 +66,7 @@ export default function App(props: AppProps) {
       {...rest}
       render={(props) =>
         // ternary condition
-        loginReducer.result ? (
+        loginReducer.result?.token ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />
