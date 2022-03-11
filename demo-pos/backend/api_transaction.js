@@ -13,6 +13,9 @@ router.get("/transaction", async (req, res) => {
         as: "staff",
       },
     },
+    {
+      $unwind: "$staff",
+    },
   ]);
   res.json(doc);
 });
