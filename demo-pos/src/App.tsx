@@ -75,6 +75,20 @@ export default function App(props: AppProps) {
     />
   );
 
+  // Login Route
+  const LoginRoute = ({ component: Component, ...rest }: CommonRouteProps) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        loginReducer.result?.token ? (
+          <Redirect to="/stock" />
+        ) : (
+          <Component {...props} />
+        )
+      }
+    />
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Router
