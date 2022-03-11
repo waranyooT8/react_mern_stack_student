@@ -22,6 +22,7 @@ import StockEditPage from "./components/pages/StockEditPage";
 import StockPage from "./components/pages/StockPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import { useDispatch, useSelector } from "react-redux";
+import { RootReducer } from "./reducers";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -43,6 +44,7 @@ const theme = createTheme({
 type AppProps = {};
 export default function App(props: AppProps) {
   const [open, setOpen] = React.useState(true);
+  const loginReducer = useSelector((state: RootReducer) => state.loginReducer);
 
   const handleDrawerOpen = () => {
     setOpen(true);
