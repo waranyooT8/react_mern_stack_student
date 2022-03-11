@@ -53,7 +53,7 @@ export default () => {
       {
         label: "Revenue 2023",
         fill: false,
-        lineTension: 0.1, // line curve
+        lineTension: 0.2, // line curve
         borderWidth: 0.5, // line thiness
         backgroundColor: "rgba(0, 0, 0, 0.1)",
         borderColor: "rgba(0, 0, 0, 0.3)",
@@ -88,7 +88,7 @@ export default () => {
       title: {
         display: true,
         text: "CodeMobiles ChartJS",
-        position: "top",
+        position: "bottom",
       },
     },
     maintainAspectRatio: false,

@@ -3,7 +3,7 @@ const router = express.Router();
 const Transactions = require("./models/trans_schema");
 
 router.get("/transaction", async (req, res) => {
-  const doc = await Transactions.find();
+  const doc = await Transactions.aggregate([{ $sort: { timestamp: -1 } }]);
   res.json(doc);
 });
 
