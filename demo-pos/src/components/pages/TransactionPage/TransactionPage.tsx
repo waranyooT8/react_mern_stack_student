@@ -1,5 +1,8 @@
 import * as React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { useDispatch, useSelector } from "react-redux";
+import { RootReducer } from "../../../reducers";
+import * as transactionActions from "../../../actions/transaction.action";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -37,10 +40,13 @@ const rows = [
 ];
 
 export default function DataTable() {
-  React.useEffect(() => {
-      
-  }, [])
-  
+  const dispatch = useDispatch();
+  const transactionReducer = useSelector(
+    (state: RootReducer) => state.transactionReducer
+  );
+
+  React.useEffect(() => {}, []);
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
